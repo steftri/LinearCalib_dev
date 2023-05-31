@@ -1,0 +1,3 @@
+[submodule "lib/LinearCalib"]
+	path = lib/LinearCalib
+	url = https://github.com/steftri/LinearCalib.git
