@@ -1,0 +1,21 @@
+@startuml
+
+
+class LinearCalib 
+{
+  - m : float
+  - n : float
+  ----
+  + LinearCalib(m = 1.0, n = 0.0)
+  ....
+  + setParams(InMin, InMax, OutMin, OutMax)
+  + setParams(m, n)
+  + getParams(*m, *n)
+  ....
+  + float calc(Value);
+  ....
+  + static float map(Value, InMin, InMax, OutMin, OutMax)
+}
+
+
+@enduml
