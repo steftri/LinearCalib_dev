@@ -4,8 +4,6 @@
 #include "LinearCalib.h"
 
 
-LinearCalib myCalib();
-
 
 void setUp(void) 
 {
