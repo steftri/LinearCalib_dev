@@ -1,4 +1,7 @@
-#include <Arduino.h>
+#ifdef ARDUINO  
+#include <Arduino.h>   // needed for service delay
+#endif
+
 #include <unity.h>
 
 #include "LinearCalib.h"
@@ -88,7 +91,6 @@ void test_calc_params(void)
 
 
 
-
 void test_shit(void) 
 {
   LinearCalib myCalib;
@@ -101,21 +103,37 @@ void test_shit(void)
 
 
 
-
 void setup()
 {
-    delay(2000); // service delay
-    UNITY_BEGIN();
+#ifdef ARDUINO
+  delay(2000); // service delay
+#endif
 
-    RUN_TEST(test_static_map);
-    RUN_TEST(test_unconfigured_class);
-    RUN_TEST(test_set_params);
-    RUN_TEST(test_calc_params);
-    RUN_TEST(test_shit);
+  UNITY_BEGIN();
 
-    UNITY_END(); // stop unit testing
+  RUN_TEST(test_static_map);
+  RUN_TEST(test_unconfigured_class);
+  RUN_TEST(test_set_params);
+  RUN_TEST(test_calc_params);
+  RUN_TEST(test_shit);
+
+  UNITY_END(); // stop unit testing
 }
+
+
 
 void loop()
 {
 }
+
+
+
+#ifndef ARDUINO
+// only needed if unit test is running in an native environment
+int main(int argc, char *argv[])
+{
+  setup();
+  loop();
+  return 0;
+}
+#endif
