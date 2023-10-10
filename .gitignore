@@ -34,3 +34,4 @@
 # Development environment
 .pio 
 .vscode
+/lib/build-*

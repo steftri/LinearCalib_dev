@@ -91,6 +91,31 @@ void test_calc_params(void)
 
 
 
+void test_calc_inverse(void) 
+{
+  LinearCalib myCalib;
+  float x, y;
+
+  myCalib.setParams(0.5, 1.3, 0.0, 1.0);
+  y = myCalib.calcInverse(0.0);
+  TEST_ASSERT_FLOAT_WITHIN(0.01, 0.5, y);
+  x = myCalib.calc(y);
+  TEST_ASSERT_FLOAT_WITHIN(0.01, 0.0, x);
+
+  y = myCalib.calcInverse(0.5);
+  TEST_ASSERT_FLOAT_WITHIN(0.01, 0.9, y);
+  x = myCalib.calc(y);
+  TEST_ASSERT_FLOAT_WITHIN(0.01, 0.5, x);
+
+  y = myCalib.calcInverse(1.0);
+  TEST_ASSERT_FLOAT_WITHIN(0.01, 1.3, y);
+  x = myCalib.calc(y);
+  TEST_ASSERT_FLOAT_WITHIN(0.01, 1.0, x);
+}
+
+
+
+
 void test_shit(void) 
 {
   LinearCalib myCalib;
@@ -115,6 +140,7 @@ void setup()
   RUN_TEST(test_unconfigured_class);
   RUN_TEST(test_set_params);
   RUN_TEST(test_calc_params);
+  RUN_TEST(test_calc_inverse);
   RUN_TEST(test_shit);
 
   UNITY_END(); // stop unit testing

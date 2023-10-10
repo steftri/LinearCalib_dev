@@ -13,6 +13,7 @@ class LinearCalib
   + getParams(*m, *n)
   ....
   + float calc(Value);
+  + float calcInverse(Value);
   ....
   + static float map(Value, InMin, InMax, OutMin, OutMax)
 }
